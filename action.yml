@@ -24,6 +24,10 @@ inputs:
     description: 'Override whether to use the tool cache when caching Zig installations. Default is false for GitHub-hosted runners, true for other runners.'
     required: false
     default: ''
+  include-lib-in-path:
+    description: 'Whether to include the zig stdlib and headers along with the binary, on exported PATH'
+    required: false
+    default: ''
 runs:
   using: 'node20'
   main: 'main.js'

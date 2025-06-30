@@ -145,7 +145,15 @@ async function main() {
         await tc.extractTar(tarball_path, null, 'xJ'); // J for xz
       core.info(`Extract took ${Date.now() - extract_start} ms`);
 
-      const zig_inner_dir = path.join(zig_parent_dir, tarball_name);
+      let zig_inner_dir;
+      let include_lib_in_path = core.getInput('include-lib-in-path');
+      if (include_lib_in_path) {
+        core.info('Including supporting zig files on exported path');
+        zig_inner_dir = zig_parent_dir;
+      } else {
+        zig_inner_dir = path.join(zig_parent_dir, tarball_name);
+      }
+      path.join(zig_parent_dir, tarball_name);
       if (use_tool_cache) {
         core.info('Copying Zig installation to tool-cache');
         zig_dir = await tc.cacheDir(zig_inner_dir, 'zig', await common.getVersion());
