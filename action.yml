@@ -1,4 +1,4 @@
-name: 'Setup Zig Compiler'
+name: 'Setup Zig Compiler test'
 description: 'Download and install the Zig compiler, and cache the global Zig cache'
 inputs:
   version:
